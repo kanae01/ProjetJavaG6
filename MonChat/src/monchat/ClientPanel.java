@@ -31,7 +31,7 @@ class ClientPanel extends Parent {
     private TextArea connected;
     private Text textMembers;
     
-    ClientPanel(){
+    public ClientPanel(){
         
         Text = new TextArea();
         scrollReceivedText = new ScrollPane();
@@ -117,6 +117,7 @@ class ClientPanel extends Parent {
  
     public void envoi(){
         String message = Text.getText();
+        MonChat.c.send(message);
         if(message.length() != 0){
             Label label = new Label(message);
             label.setWrapText(true);

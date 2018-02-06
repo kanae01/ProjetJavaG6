@@ -24,6 +24,8 @@ import javafx.stage.Stage;
  */
 public class MonChat extends Application {
     
+    public static Client c;
+    
     @Override
     public void start(Stage stage) throws Exception{
         /*Button btn = new Button();
@@ -53,7 +55,7 @@ public class MonChat extends Application {
             } else {
                 String address = args[0];
                 Integer port = new Integer(args[1]);
-                Client c = new Client(address, port);
+                c = new Client(address, port);
             }
         } catch (UnknownHostException e) {
             e.printStackTrace();

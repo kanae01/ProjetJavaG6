@@ -20,10 +20,15 @@ public class ClientReceive implements Runnable{
     
     private Client client;
     private BufferedReader in;
+    private String msg;
     
-    ClientReceive(Client c, BufferedReader in){
+    public ClientReceive(Client c, BufferedReader in){
         client = c;
         this.in = in;
+    }
+    
+    public String getMsg(){
+        return msg;
     }
 
     @Override
@@ -37,6 +42,7 @@ public class ClientReceive implements Runnable{
                 Logger.getLogger(ClientReceive.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (message != null) {
+                msg = message;
                 System.out.println("\nMessage reçu : " + message);
             } else {
                 isActive = false;

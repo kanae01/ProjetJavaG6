@@ -23,6 +23,8 @@ public class Client {
     private Socket socket;
     private BufferedReader in;
     private PrintWriter out;
+    private ClientSend clientS;
+    private ClientReceive clientR;
 
     public Client(String ip, int port) throws IOException{
         address = ip;
@@ -31,12 +33,23 @@ public class Client {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream());
 
-        Thread threadClientSend = new Thread(new ClientSend(out));
+        clientS = new ClientSend(out);
+        clientR = new ClientReceive(this, in);
+        
+        Thread threadClientSend = new Thread(clientS);
         threadClientSend.start();
-        Thread threadClientReceive = new Thread(new ClientReceive(this, in));
+        Thread threadClientReceive = new Thread(clientR);
         threadClientReceive.start();
     }
 
+    public void send(String msg){
+        clientS.setMsg(msg);
+    }
+    
+    public String receive(){
+        return clientR.getMsg();
+    }
+    
     public void disconnectedServer() throws IOException{
        in.close();
        out.close();
