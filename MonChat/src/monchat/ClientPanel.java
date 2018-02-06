@@ -96,10 +96,11 @@ class ClientPanel extends Parent {
         });
         
         //envoyer le message lorsqu'on fait "entrer"
-        Text.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        Text.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode() == KeyCode.ENTER) {
+                    Text.setText(Text.getText().substring(0,Text.getText().length() - 1));
                     envoi();
                     Text.setText("");
                 }
@@ -117,6 +118,17 @@ class ClientPanel extends Parent {
  
     public void envoi(){
         String message = Text.getText();
+        System.out.println("1-"+message);
+        
+        //tant que le 1er caractère de la chaine est un espace ou un retour à la ligne
+        while(message.length() != 0 && (message.charAt(0)=='\n' || message.charAt(0)==' '))
+        {
+            message = message.substring(1); //on le supprime
+            System.out.println("2-"+message);
+
+        }
+        System.out.println("3-"+message);
+
         if(message.length() != 0){
             Label label = new Label(message);
             label.setWrapText(true);
