@@ -83,16 +83,9 @@ class ClientPanel extends Parent {
         sendBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String message = Text.getText();
-                if(message.length() != 0){
-                    Label label = new Label(message);
-                    label.setWrapText(true);
-                    label.setPrefWidth(380);
-                    receivedText.getChildren().add(label);
+                    envoi();
                     Text.setText("");
                 }
-                
-            }
         });
         
         clearBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -107,16 +100,7 @@ class ClientPanel extends Parent {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode() == KeyCode.ENTER) {
-                    String message = Text.getText();
-
-                    if(message.length() != 0)
-                    {
-                        Label label = new Label(message);
-                        label.setWrapText(true);
-                        label.setPrefWidth(380);
-                        receivedText.getChildren().add(label);
-                    }
-                    
+                    envoi();
                     Text.setText("");
                 }
             }
@@ -130,5 +114,14 @@ class ClientPanel extends Parent {
         this.getChildren().add(connected);
         this.getChildren().add(textMembers);
     }
-    
-}
+ 
+    public void envoi(){
+        String message = Text.getText();
+        if(message.length() != 0){
+            Label label = new Label(message);
+            label.setWrapText(true);
+            label.setPrefWidth(380);
+            receivedText.getChildren().add(label);
+        }
+    }
+}   
