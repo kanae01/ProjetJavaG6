@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -97,6 +99,26 @@ class ClientPanel extends Parent {
             @Override
             public void handle(ActionEvent event) {
                 Text.setText("");
+            }
+        });
+        
+        //envoyer le message lorsqu'on fait "entrer"
+        Text.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.ENTER) {
+                    String message = Text.getText();
+
+                    if(message.length() != 0)
+                    {
+                        Label label = new Label(message);
+                        label.setWrapText(true);
+                        label.setPrefWidth(380);
+                        receivedText.getChildren().add(label);
+                    }
+                    
+                    Text.setText("");
+                }
             }
         });
         
