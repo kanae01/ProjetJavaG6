@@ -24,7 +24,7 @@ public class Client {
     private BufferedReader in;
     private PrintWriter out;
 
-    Client(String ip, int port) throws IOException{
+    public Client(String ip, int port) throws IOException{
         address = ip;
         this.port = port;
         socket = new Socket(ip, port);
