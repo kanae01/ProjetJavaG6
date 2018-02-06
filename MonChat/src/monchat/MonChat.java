@@ -5,7 +5,11 @@
  */
 package monchat;
 
+import Client.Client;
+import java.io.IOException;
+import java.net.UnknownHostException;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -41,6 +45,22 @@ public class MonChat extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();*/
         
+        String args[] = {"127.0.0.1", "1025"};
+        
+        try {
+            if (args.length != 2) {
+                printUsage();
+            } else {
+                String address = args[0];
+                Integer port = new Integer(args[1]);
+                Client c = new Client(address, port);
+            }
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
         ClientPanel clientPanel = new ClientPanel();
         Group root = new Group();
         root.getChildren().add(clientPanel);
@@ -55,6 +75,12 @@ public class MonChat extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+    
+    private static void printUsage() {
+        System.out.println("java client.Client <address> <port>");
+        System.out.println("\t<address>: server's ip address");
+        System.out.println("\t<port>: server's port");
     }
     
 }
