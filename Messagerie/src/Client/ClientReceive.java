@@ -43,7 +43,7 @@ public class ClientReceive implements Runnable{
             }
             if (message != null) {
                 msg = message;
-                System.out.println("\nMessage reçu : " + message);
+                // System.out.println("\nMessage reçu : " + message);
             } else {
                 isActive = false;
             }

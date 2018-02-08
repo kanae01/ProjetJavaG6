@@ -91,6 +91,14 @@ class ClientPanel extends Parent {
         clearBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                String message = MonChat.c.receive();
+                
+                if(message != null && message != ""){
+                    Label label = new Label(message);
+                    label.setWrapText(true);
+                    label.setPrefWidth(380);
+                    receivedText.getChildren().add(label);
+                }
                 Text.setText("");
             }
         });

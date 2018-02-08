@@ -33,7 +33,7 @@ public class ClientSend implements Runnable{
     public void run() {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.out.print("Votre message >> ");
+            // System.out.print("Votre message >> ");
             String m = msg;
             out.println(m);
             out.flush();
