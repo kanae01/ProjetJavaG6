@@ -21,7 +21,7 @@ public class ClientReceive implements Runnable{
     private Client client;
     private BufferedReader in;
     
-    ClientReceive(Client c, BufferedReader in){
+    public ClientReceive(Client c, BufferedReader in){
         client = c;
         this.in = in;
     }

@@ -20,7 +20,7 @@ public class ClientSend implements Runnable{
     
      private PrintWriter out;
     
-    ClientSend(PrintWriter pw){
+    public ClientSend(PrintWriter pw){
         out = pw;
     }
 
