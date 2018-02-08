@@ -8,13 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-    <jar href="MonChat.jar" size="6294" download="eager" />
-    <jar href="lib\Messagerie.jar" size="14401" download="eager" />
-=======
-    <jar href="MonChat.jar" size="6336" download="eager" />
-    <jar href="lib\Messagerie.jar" size="14610" download="eager" />
->>>>>>> connectionServeur
+    <jar href="MonChat.jar" size="5996" download="eager" />
+    <jar href="lib\Messagerie.jar" size="15027" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="MonChat" >
     <param name="requiredFXVersion" value="8.0+"/>

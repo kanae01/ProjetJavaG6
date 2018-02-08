@@ -28,7 +28,7 @@ class ClientPanel extends Parent {
     private TextArea connected;
     private Text textMembers;
     
-    ClientPanel(){
+    public ClientPanel(){
         
         Text = new TextArea();
         scrollReceivedText = new ScrollPane();
@@ -90,7 +90,17 @@ class ClientPanel extends Parent {
         clearBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Text.setText(""); //suppression du contenu de la TextArea
+
+                String message = MonChat.c.receive();
+                
+                // if(message != null && message != ""){
+                    Label label = new Label(message);
+                    label.setWrapText(true);
+                    label.setPrefWidth(380);
+                    receivedText.getChildren().add(label);
+                // }
+                
+                Text.setText("");
             }
         });
         
@@ -134,6 +144,7 @@ class ClientPanel extends Parent {
         }
 
         //si le message n'est pas vide : on l'insère
+        MonChat.c.send(message);
         if(message.length() != 0){
             Label label = new Label(message);
             label.setWrapText(true);

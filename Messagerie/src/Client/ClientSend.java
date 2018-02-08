@@ -18,18 +18,23 @@ import java.util.Scanner;
  */
 public class ClientSend implements Runnable{
     
-     private PrintWriter out;
+    private PrintWriter out;
+    private String msg;
     
     public ClientSend(PrintWriter pw){
         out = pw;
+    }
+    
+    public void setMsg(String m){
+        msg = m;
     }
 
     @Override
     public void run() {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.out.print("Votre message >> ");
-            String m = sc.nextLine();
+            // System.out.print("Votre message >> ");
+            String m = msg;
             out.println(m);
             out.flush();
         }
