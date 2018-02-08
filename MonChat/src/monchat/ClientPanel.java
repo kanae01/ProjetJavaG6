@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package monchat;
 
 import javafx.event.ActionEvent;
@@ -23,6 +19,7 @@ import javafx.scene.text.TextFlow;
  */
 class ClientPanel extends Parent {
     
+    //initialisation des élements de la fenêtre
     private TextArea Text;
     private ScrollPane scrollReceivedText;
     private TextFlow receivedText;
@@ -80,18 +77,20 @@ class ClientPanel extends Parent {
         receivedText.setLineSpacing(5);
         receivedText.setPrefWidth(380);
         
+        //listener du bouton "Envoyer"
         sendBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                    envoi();
-                    Text.setText("");
+                    envoi(); //envoie du message
+                    Text.setText(""); //suppression du contenu de la TextArea
                 }
         });
         
+        //listener du bouton "Effacer"
         clearBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Text.setText("");
+                Text.setText(""); //suppression du contenu de la TextArea
             }
         });
         
@@ -100,13 +99,14 @@ class ClientPanel extends Parent {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode() == KeyCode.ENTER) {
-                    Text.setText(Text.getText().substring(0,Text.getText().length() - 1));
-                    envoi();
-                    Text.setText("");
+                    //Text.setText(Text.getText().substring(0,Text.getText().length() - 1));
+                    envoi(); //envoie du message
+                    Text.setText(""); //suppression du contenu de la TextArea
                 }
             }
         });
         
+        //insertion des élements dans la fenêtre
         this.getChildren().add(Text);
         this.getChildren().add(scrollReceivedText);
         this.getChildren().add(receivedText);
@@ -115,20 +115,25 @@ class ClientPanel extends Parent {
         this.getChildren().add(connected);
         this.getChildren().add(textMembers);
     }
- 
+
+    /**
+     * envoie le texte contenu dans la TextArea vers le Textflow après suppression des espaces vides
+     */
     public void envoi(){
         String message = Text.getText();
-        System.out.println("1-"+message);
         
-        //tant que le 1er caractère de la chaine est un espace ou un retour à la ligne
+        //suppression des espaces blancs au début de la chaine
         while(message.length() != 0 && (message.charAt(0)=='\n' || message.charAt(0)==' '))
         {
-            message = message.substring(1); //on le supprime
-            System.out.println("2-"+message);
-
+            message = message.substring(1);
         }
-        System.out.println("3-"+message);
+        //suppression des espaces blancs à la fin de la chaine
+        while(message.length() != 0 && (message.charAt(message.length() - 1)=='\n' || message.charAt(message.length() - 1)==' '))
+        {
+            message = message.substring(0,message.length() - 1);
+        }
 
+        //si le message n'est pas vide : on l'insère
         if(message.length() != 0){
             Label label = new Label(message);
             label.setWrapText(true);
@@ -136,4 +141,5 @@ class ClientPanel extends Parent {
             receivedText.getChildren().add(label);
         }
     }
-}   
+
+}
