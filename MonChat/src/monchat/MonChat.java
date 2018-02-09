@@ -16,6 +16,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import static javafx.scene.paint.Color.GREY;
 import javafx.stage.Stage;
 
 /**
@@ -67,7 +68,8 @@ public class MonChat extends Application {
         Group root = new Group();
         root.getChildren().add(clientPanel);
         Scene scene = new Scene(root, 600, 500);
-        stage.setTitle("Mon chat");
+        scene.setFill(GREY);
+        stage.setTitle("Chat'on");
         stage.setScene(scene);
         stage.show();
     }

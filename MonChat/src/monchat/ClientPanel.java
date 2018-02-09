@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import static javafx.scene.paint.Color.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -40,17 +41,20 @@ class ClientPanel extends Parent {
         
         textMembers.setLayoutX(470);
         textMembers.setLayoutY(40);
+        //textMembers.setFill(CORNFLOWERBLUE);
         
         sendBtn.setLayoutX(470);
         sendBtn.setLayoutY(350);
         sendBtn.setPrefHeight(15);
-        sendBtn.setPrefWidth(100);
+        sendBtn.setPrefWidth(100); 
+        sendBtn.setTextFill(GREEN);
         sendBtn.setVisible(true);
         
         clearBtn.setLayoutX(470);
         clearBtn.setLayoutY(380);
         clearBtn.setPrefHeight(15);
         clearBtn.setPrefWidth(100);
+        clearBtn.setTextFill(RED);
         clearBtn.setVisible(true);
         
         connected.setLayoutX(470);
@@ -58,17 +62,20 @@ class ClientPanel extends Parent {
         connected.setPrefHeight(280);
         connected.setPrefWidth(100);
         connected.setEditable(false);
+        connected.setStyle("-fx-background-color: blue;");
         
         Text.setLayoutX(50);
         Text.setLayoutY(350);
         Text.setPrefHeight(100);
         Text.setPrefWidth(400);
         Text.setWrapText(true);
+        Text.setStyle("-fx-background-color: green;");
         
         scrollReceivedText.setLayoutX(50);
         scrollReceivedText.setLayoutY(50);
         scrollReceivedText.setPrefHeight(280);
         scrollReceivedText.setPrefWidth(400);
+        scrollReceivedText.setStyle("-fx-background-color: orange;");
         
         scrollReceivedText.setContent(receivedText);
         scrollReceivedText.vvalueProperty().bind(receivedText.heightProperty());
